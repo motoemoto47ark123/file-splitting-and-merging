@@ -7,6 +7,10 @@ This command-line tool allows you to split large files into smaller parts and me
 
 To split a file into smaller parts, use the following command:
 
+```bash
+python splitter.py -i inputfile.txt -s 1
+```
+
 - `-i` or `--input`: Specify the path to the input file.
 - `-s` or `--part-size`: Specify the size of each part in gigabytes. For example, `-s 1` will split the file into 1GB parts.
 
