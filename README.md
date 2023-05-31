@@ -7,10 +7,6 @@ This command-line tool allows you to split large files into smaller parts and me
 
 To split a file into smaller parts, use the following command:
 
-```bash
-python splitter.py -i inputfile.txt -s 1
-```
-
 - `-i` or `--input`: Specify the path to the input file.
 - `-s` or `--part-size`: Specify the size of each part in gigabytes. For example, `-s 1` will split the file into 1GB parts.
 
@@ -31,13 +27,22 @@ The tool will merge the input file parts in the specified order and save the res
 
 > Note: Ensure that the file parts to be merged are in the correct order.
 
-## Requirements
-
-- Python 3.x
-
 ## How to Run
 
-1. Clone this repository: `git clone https://github.com/your-username/your-repo.git`
-2. Navigate to the project directory: `cd your-repo`
-3. Split files: Use the `splitter.py` script as explained above.
-4. Merge files: Use the `merger.py` script as explained above.
+1. Clone this repository: `git clone https://github.com/motoemoto47ark123/file-splitting-and-merging.git`
+2. Navigate to the project directory: `file-splitting-and-merging`
+3. Split files: Use the following command to split a file:
+
+   ```bash
+   python splitter.py -i inputfile.txt -s 1
+   ```
+
+   Replace `inputfile.txt` with the path to your input file, and modify the part size as needed.
+
+4. Merge files: Use the following command to merge file parts:
+
+   ```bash
+   python merger.py -i part1.txt part2.txt part3.txt -o outputfile.txt
+   ```
+
+   Replace `part1.txt`, `part2.txt`, `part3.txt` with the paths to your input file parts, and specify the desired output file name with `-o` option.
