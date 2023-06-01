@@ -21,6 +21,9 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
+      - name: Install PyInstaller
+        run: pip install pyinstaller
+
       - name: Build splitter executable
         run: pyinstaller gui-splitter.py --onefile
 
