@@ -21,14 +21,13 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Install PyInstaller
-        run: pip install pyinstaller
-
       - name: Build splitter executable
-        run: pyinstaller gui-splitter.py --onefile
+        run: pyinstaller gui/gui-splitter.py --onefile
+        working-directory: ./gui
 
       - name: Build merger executable
-        run: pyinstaller gui-merger.py --onefile
+        run: pyinstaller gui/gui-merger.py --onefile
+        working-directory: ./gui
 
       - name: Create Release
         id: create_release
@@ -46,20 +45,5 @@ jobs:
         with:
           name: Executables
           path: |
-            ./dist/gui-splitter.exe
-            ./dist/gui-merger.exe
-
-      - name: Get Release ID
-        id: get_release_id
-        run: echo "::set-output name=release_id::${{ steps.create_release.outputs.id }}"
-
-      - name: Upload Artifacts to Release
-        uses: actions/upload-artifact@v2
-        with:
-          name: Executables
-          path: |
-            ./dist/gui-splitter.exe
-            ./dist/gui-merger.exe
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          RELEASE_ID: ${{ steps.get_release_id.outputs.release_id }}
+            ./gui/dist/gui-splitter
+            ./gui/dist/gui-merger
