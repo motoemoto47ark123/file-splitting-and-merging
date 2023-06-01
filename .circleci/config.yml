@@ -1,12 +1,9 @@
 version: 2.1
 
-orbs:
-  python: circleci/python@1.5.0
-
 jobs:
   build-and-test:
     docker:
-      - image: circleci/python:3.10.2-buster
+      - image: python:3.10.2-buster
 
     steps:
       - checkout
