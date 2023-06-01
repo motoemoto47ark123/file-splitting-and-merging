@@ -1,0 +1,49 @@
+name: Build and Release
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.x
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Build splitter executable
+        run: pyinstaller gui-splitter.py --onefile
+        working-directory: ./gui
+
+      - name: Build merger executable
+        run: pyinstaller gui-merger.py --onefile
+        working-directory: ./gui
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v1.0
+          release_name: Release v1.0
+          draft: false
+          prerelease: false
+
+      - name: Upload executables
+        uses: actions/upload-artifact@v2
+        with:
+          name: Executables
+          path: |
+            ./gui/dist/gui-splitter.exe
+            ./gui/dist/gui-merger.exe
