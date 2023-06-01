@@ -1,0 +1,35 @@
+version: 2.1
+
+orbs:
+  python: circleci/python@1.5.0
+
+jobs:
+  build-and-test:
+    docker:
+      - image: cimg/python:3.10.2
+
+    steps:
+      - checkout
+
+      - run:
+          name: Install dependencies
+          command: pip install -r requirements.txt
+
+      - run:
+          name: Build splitter executable
+          command: pyinstaller gui-splitter.py --onefile
+          working_directory: ./gui
+
+      - run:
+          name: Build merger executable
+          command: pyinstaller gui-merger.py --onefile
+          working_directory: ./gui
+
+      - run:
+          name: Run tests
+          command: pytest
+
+workflows:
+  build-and-test:
+    jobs:
+      - build-and-test
