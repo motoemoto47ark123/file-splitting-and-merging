@@ -20,6 +20,10 @@ jobs:
           command: pip install pyinstaller
 
       - run:
+          name: Install pytest
+          command: pip install pytest
+
+      - run:
           name: Build splitter executable
           command: pyinstaller gui-splitter.py --onefile
           working_directory: ./gui
