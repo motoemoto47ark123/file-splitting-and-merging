@@ -22,12 +22,12 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Build splitter executable
-        run: pyinstaller gui-splitter.py --onefile
-        working-directory: ./gui
+        run: pyinstaller gui/gui-splitter.py --onefile
+        working-directory: ${{ github.workspace }}
 
       - name: Build merger executable
-        run: pyinstaller gui-merger.py --onefile
-        working-directory: ./gui
+        run: pyinstaller gui/gui-merger.py --onefile
+        working-directory: ${{ github.workspace }}
 
       - name: Create Release
         id: create_release
