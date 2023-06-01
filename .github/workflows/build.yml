@@ -18,11 +18,11 @@ jobs:
         with:
           python-version: 3.x
 
-      - name: Install PyInstaller
-        run: pip install pyinstaller
-
       - name: Install dependencies
         run: pip install -r requirements.txt
+
+      - name: Install PyInstaller
+        run: pip install pyinstaller
 
       - name: Build splitter executable
         run: pyinstaller gui/gui-splitter.py --onefile
