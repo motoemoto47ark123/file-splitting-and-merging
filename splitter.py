@@ -5,8 +5,8 @@ def split_file(input_file, part_size):
     print('Start...')
     try:
         file_size = os.path.getsize(input_file)
-        size_gb = int(part_size)
-        part_size_bytes = size_gb * 1024 * 1024 * 1024
+        size_mb = int(part_size)
+        part_size_bytes = size_mb * 1024 * 1024
         num_parts = file_size // part_size_bytes + (file_size % part_size_bytes > 0)
         file_dir, file_name = os.path.split(input_file)
 
@@ -38,7 +38,7 @@ def split_file(input_file, part_size):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Splits a file into multiple parts')
     parser.add_argument('-i', '--input', required=True, help='Input file')
-    parser.add_argument('-s', '--part-size', required=True, help='Size of each part in gigabytes')
+    parser.add_argument('-s', '--part-size', required=True, help='Size of each part in megabytes')
     args = parser.parse_args()
 
     split_file(args.input, args.part_size)
